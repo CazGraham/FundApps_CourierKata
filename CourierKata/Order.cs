@@ -22,5 +22,19 @@ namespace CourierKata
             Parcels = parcels;
             IsSpeedyShipment = isSpeedyShipment;
         }
+        public double ParcelCost()
+        {
+            return Parcels.Sum(x => x.Category.Price);
+        }
+
+        public double ShippingCost()
+        {
+            return IsSpeedyShipment ? ParcelCost() * (SpeedyShipmentMultiplier - 1) : 0;
+        }
+
+        public double TotalCost()
+        {
+            return ParcelCost() + ShippingCost();
+        }
     }
 }
