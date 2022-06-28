@@ -5,6 +5,7 @@
         public override string Name => "XL";
         public override double SizeLimit => 100;
         public override double Price => 25;
+        public override double WeightLimitKg => 10;
 
         public override bool IsCategorySizeSuitable(double size)
         {
