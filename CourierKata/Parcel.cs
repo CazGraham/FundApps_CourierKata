@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CourierKata
+﻿namespace CourierKata
 {
     public class Parcel
     {
         public double Size { get; }
-        public double Price { get; }
-        public string? CategoryName { get; }
+        public Category Category { get; }  
 
         public Parcel(double size)
         {
@@ -21,25 +14,21 @@ namespace CourierKata
                 throw new ArgumentException("Size is not a valid value.");
             }
 
-            if(size < 10)
+            if (size < 10)
             {
-                CategoryName = "Small";
-                Price = 3;
+                Category = new SmallCategory();
             }
             else if (size < 50)
             {
-                CategoryName = "Medium";
-                Price = 8;
+                Category=new MediumCategory();
             }
             else if (size < 100)
             {
-                CategoryName = "Large";
-                Price = 15;
+                Category = new LargeCategory();
             }
             else if (size >= 100)
             {
-                CategoryName = "XL";
-                Price = 8;
+                Category = new XLCategory();
             }
         }
     }

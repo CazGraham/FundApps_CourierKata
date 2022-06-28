@@ -7,7 +7,7 @@ namespace CourierKata.Tests
     {
         [TestCase(1, "Small")]
         [TestCase(9.9, "Small")]
-        [TestCase(10,"Medium")]
+        [TestCase(10, "Medium")]
         [TestCase(49.9, "Medium")]
         [TestCase(50, "Large")]
         [TestCase(99.999, "Large")]
@@ -17,7 +17,7 @@ namespace CourierKata.Tests
         {
             Parcel parcel = new Parcel(size);
 
-            Assert.AreEqual(expectedParcelCategory, parcel.CategoryName);
+            Assert.AreEqual(expectedParcelCategory, parcel.Category.Name);
         }
 
         [TestCase(0, "Size is not a valid value.")]
