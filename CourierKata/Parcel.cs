@@ -2,12 +2,13 @@
 {
     public class Parcel
     {
-        public double Size { get; }
+        public double[] Sizes { get; }
         public Category Category { get; }  
 
-        public Parcel(double size)
+        public Parcel(double[] sizes)
         {
-            Size = size;
+            Sizes = sizes;
+            var size = sizes.Max();
 
             if (size <= 0)
             {
