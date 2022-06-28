@@ -6,31 +6,31 @@
         public Category Category { get; }  
 
         public Parcel(double[] sizes)
-        {
-            Sizes = sizes;
-            var size = sizes.Max();
-
-            if (size <= 0)
+        {            
+            if (sizes.Any(s => s <= 0))
             {
                 throw new ArgumentException("Size is not a valid value.");
             }
 
-            if (size < 10)
+            var largestSize = sizes.Max();
+            var category = PickCategory(largestSize);
+
+            if (category == null)
             {
-                Category = new SmallCategory();
+                throw new ArgumentException("Category is not a valid value.");
             }
-            else if (size < 50)
-            {
-                Category=new MediumCategory();
-            }
-            else if (size < 100)
-            {
-                Category = new LargeCategory();
-            }
-            else if (size >= 100)
-            {
-                Category = new XLCategory();
-            }
+
+            Sizes = sizes;
+            Category = category;
+        }
+
+        public Category? PickCategory(double size)
+        {
+            var categories = Category.GetCategories();
+            var category = categories.Where(x => x.IsCategorySizeSuitable(size))
+                                    .OrderBy(s => s.SizeLimit)
+                                    .FirstOrDefault();
+            return category;
         }
     }
 }
