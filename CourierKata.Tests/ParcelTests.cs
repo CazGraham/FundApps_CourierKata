@@ -29,5 +29,31 @@ namespace CourierKata.Tests
             var ex = Assert.Throws<ArgumentException>(() => new Parcel(sizes, weight));
             Assert.AreEqual(expectedExceptionMessage, ex?.Message);
         }
+
+        [TestCase(new double[] { 1, 1, 1 }, 5, 8)]
+        [TestCase(new double[] { 9.9, 9.9, 9.9 }, 2, 2)]
+        [TestCase(new double[] { 10, 10, 10 }, 5, 4)]
+        [TestCase(new double[] { 49.9, 49.9, 49.9 }, 3.5, 2)]
+        [TestCase(new double[] { 50, 50, 50 }, 6.01, 2)]
+        [TestCase(new double[] { 99.999, 99.999, 99.999 }, 16, 20)]
+        [TestCase(new double[] { 100, 100, 100 }, 40, 60)]
+        [TestCase(new double[] { 1000, 1000, 1000 }, 100, 180)]
+        public void AdditionalWeightCost_WhenDataIsValid_ExpectCorrectCost(double[] sizes, double weight, double expectedCost)
+        {
+            Parcel parcel = new Parcel(sizes, weight);
+
+            Assert.AreEqual(expectedCost, parcel.AdditionalWeightCost());
+        }
+
+        [TestCase(new double[] { 1, 1, 1 }, 5, 11)]
+        [TestCase(new double[] { 10, 10, 10 }, 5, 12)]
+        [TestCase(new double[] { 50, 50, 50 }, 6.01, 17)]
+        [TestCase(new double[] { 100, 100, 100 }, 40, 85)]
+        public void TotalCost_WhenDataIsValid_ExpectCorrectCost(double[] sizes, double weight, double expectedCost)
+        {
+            Parcel parcel = new Parcel(sizes, weight);
+
+            Assert.AreEqual(expectedCost, parcel.TotalCost());
+        }
     }
 }
