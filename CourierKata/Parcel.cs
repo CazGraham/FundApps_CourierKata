@@ -4,10 +4,10 @@
     {
         public double[] Sizes { get; }
         public Category Category { get; }
-        public double Weight { get; private set; }
+        public double Weight { get; }
 
         public Parcel(double[] sizes, double weight)
-        {            
+        {
             if (sizes.Any(s => s <= 0))
             {
                 throw new ArgumentException("Size is not a valid value.");
@@ -31,7 +31,7 @@
             Category = category;
         }
 
-        public Category? PickCategory(double size)
+        private Category? PickCategory(double size)
         {
             var categories = Category.GetCategories();
             var category = categories.Where(x => x.IsCategorySizeSuitable(size))
@@ -51,3 +51,7 @@
         }
     }
 }
+
+
+// Additional tests would be needed for task 4
+// PickCategory will need to be changed to take into account weight and overall cost

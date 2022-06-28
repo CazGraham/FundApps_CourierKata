@@ -10,15 +10,13 @@
 
         public static IReadOnlyCollection<Category> GetCategories()
         {
-            IReadOnlyCollection<Category> Categories = new List<Category>
+            return new List<Category>
             {
                 new SmallCategory(),
                 new MediumCategory(),
                 new LargeCategory(),
                 new XLCategory(),
             };
-
-            return Categories;
         }
 
         public virtual bool IsCategorySizeSuitable(double size)
@@ -27,3 +25,8 @@
         }
     }
 }
+
+// Additional changes would be needed for task 4
+// A new category of HeavyCategory would be needed
+// SizeLimit will need to be taken into account when checking if suitable
+// Checking if suitable will need to be changed to take into account weight and overall cost

@@ -22,9 +22,15 @@ namespace CourierKata.Tests
 
         [TestCase(new double[] { 0, 0, 0 }, 1, "Size is not a valid value.")]
         [TestCase(new double[] { -3, -6, -100 }, 1, "Size is not a valid value.")]
+        public void CreateParcel_WhenSizeIsInvalid_ExpectException(double[] sizes, double weight, string expectedExceptionMessage)
+        {
+            var ex = Assert.Throws<ArgumentException>(() => new Parcel(sizes, weight));
+            Assert.AreEqual(expectedExceptionMessage, ex?.Message);
+        }
+
         [TestCase(new double[] { 1, 1, 1 }, 0, "Weight is not a valid value.")]
         [TestCase(new double[] { 3, 6, 100 }, -100, "Weight is not a valid value.")]
-        public void CreateParcel_WhenDataIsInvalid_ExpectException(double[] sizes, double weight, string expectedExceptionMessage)
+        public void CreateParcel_WhenWeightIsInvalid_ExpectException(double[] sizes, double weight, string expectedExceptionMessage)
         {
             var ex = Assert.Throws<ArgumentException>(() => new Parcel(sizes, weight));
             Assert.AreEqual(expectedExceptionMessage, ex?.Message);
@@ -57,3 +63,7 @@ namespace CourierKata.Tests
         }
     }
 }
+
+// Additional tests would be needed for task 4
+// Tests for creating a parcel with a HeavyCategory and testing the additional weight parameters
+// Tests for correctly selecting a Heavy parcel when the cost of a lower parcel exceed the costs of a heavy parcel
