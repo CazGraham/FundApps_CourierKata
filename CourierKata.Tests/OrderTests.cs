@@ -6,8 +6,8 @@ namespace CourierKata.Tests
 {
     public class OrderTests
     {
-        private static Parcel _smallParcel = new Parcel(new double[] { 1, 1, 1 });
-        private static Parcel _mediumParcel = new Parcel(new double[] { 10, 10, 10 });
+        private static Parcel _smallParcel = new Parcel(new double[] { 1, 1, 1 }, 1);
+        private static Parcel _mediumParcel = new Parcel(new double[] { 10, 10, 10 }, 2);
 
         private static List<Parcel> _singleParcelList = new List<Parcel> { _smallParcel };
         private static List<Parcel> _multipleParcelList = new List<Parcel> { _smallParcel, _smallParcel, _smallParcel, _mediumParcel, _mediumParcel };

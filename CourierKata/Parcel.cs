@@ -3,13 +3,19 @@
     public class Parcel
     {
         public double[] Sizes { get; }
-        public Category Category { get; }  
+        public Category Category { get; }
+        public double Weight { get; private set; }
 
-        public Parcel(double[] sizes)
+        public Parcel(double[] sizes, double weight)
         {            
             if (sizes.Any(s => s <= 0))
             {
                 throw new ArgumentException("Size is not a valid value.");
+            }
+
+            if (weight <= 0)
+            {
+                throw new ArgumentException("Weight is not a valid value.");
             }
 
             var largestSize = sizes.Max();
@@ -21,6 +27,7 @@
             }
 
             Sizes = sizes;
+            Weight = weight;
             Category = category;
         }
 
