@@ -39,5 +39,15 @@
                                     .FirstOrDefault();
             return category;
         }
+        public double AdditionalWeightCost()
+        {
+            var additionalWeight = Math.Ceiling(Weight) - Category.WeightLimitKg;
+            return additionalWeight > 0 ? additionalWeight * Category.AdditionalWeightPerKgCost : 0;
+        }
+
+        public double TotalCost()
+        {
+            return Category.Price + AdditionalWeightCost();
+        }
     }
 }
